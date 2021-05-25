@@ -1,0 +1,5 @@
+.idea
+.vscode
+.script
+yuque_localsetting.py
+mysql_settings.py
