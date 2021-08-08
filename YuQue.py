@@ -22,19 +22,12 @@ class YuQueConnect:
     def _request(self, method, path, **kwargs):
         try:
             self.headers['X-Auth-Token'] = self.token
-            if method == "post":
-                response = requests.post(self.BASE_URL + path, data=json.dumps(kwargs), headers=self.headers)
-            elif method == 'put':
-                response = requests.put(self.BASE_URL + path, data=json.dumps(kwargs), headers=self.headers)
+
+            if isinstance(method, str):
+                response = requests.request(method.upper(), self.BASE_URL + path, data=json.dumps(kwargs), headers=self.headers)
             else:
-                req = """requests.{method}("{url}", data={data}, headers={headers})""".format(method=method,
-                                                                                              url=str(
-                                                                                                  self.BASE_URL + path
-                                                                                              ),
-                                                                                              # data=kwargs,
-                                                                                              data=json.dumps(kwargs),
-                                                                                              headers=self.headers)
-                response = eval(req)
+                raise Exception("error")
+
         except Exception as e:
             raise e
 
