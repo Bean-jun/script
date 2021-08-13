@@ -41,11 +41,13 @@ def main(sysfile='count.py', filetype='py', ignore_path=None):
                 with open(filename, 'r', encoding='utf-8') as f:
                     _ = len(f.readlines())
                     ALL_COUNT += _
-                    with open('log.txt', 'a', encoding='utf-8') as f:
-                        f.write(f"当前{filepath}目录下{filename}文件包含行数为：{_}\n")
+
                     print(f"当前{filepath}目录下{filename}文件包含行数为：{_}")
 
                 os.chdir(BASE_DIR)
+
+                with open('log.txt', 'a', encoding='utf-8') as f:
+                    f.write(f"当前{filepath}目录下{filename}文件包含行数为：{_}\n")
 
     with open('log.txt', 'a', encoding='utf-8') as f:
         f.write(f"总行数为:{ALL_COUNT}\n")
